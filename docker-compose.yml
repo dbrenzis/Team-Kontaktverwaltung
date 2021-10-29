@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mariadb:latest
+    container_name: mariadb
+    volumes:
+      - ./datenbank/mariadb:/var/lib/mysql
+      - ./datenbank/kontaktverwaltung.sql:/docker-entrypoint-initdb.d/kontaktverwaltung.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: kontaktverwaltungdocker
+
+  api:
+    build: ./api
+    container_name: api
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_HOST=mysql
+
+  web:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: web
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_API=localhost
+    # depends_on:
+    #   - api

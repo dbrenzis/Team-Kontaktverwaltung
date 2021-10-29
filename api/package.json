@@ -1,0 +1,17 @@
+{
+  "name": "team_kontaktverwaltung",
+  "version": "1.0.0",
+  "description": "Kontaktverwaltung für Teams",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.6.0",
+    "joi": "^17.2.1",
+    "mysql": "^2.18.1"
+  }
+}
